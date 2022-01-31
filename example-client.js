@@ -1,14 +1,17 @@
 //importing the client from ipc-healthcheck
 const HealthcheckClient = require('ipc-healthcheck/healthcheck-client');
 
-
+//This is the namespace for the healthcheck services and client.
+//This namespace allows clients to specify which healthcheck server they want to connect to.
+//This is needed if you wanna run more then one server. 
+const namespace = 'ExampleSpace';
 //this is the name used to register at the server. The server will print out this name, then this service crashes
 const serviceID = 'ExampleService';
 //Turns debbug messages on or off. If set to false, the HealthcheckClient will print out log and status messages to console.
-const silent = true;
+const silent = false;
 
 //Create the client instance with the settings set above
-const healthcheckclient = new HealthcheckClient(serviceID,silent);
+const healthcheckclient = new HealthcheckClient(namespace,serviceID,silent);
 
 //start listening to healthcheck calls
 healthcheckclient.startListening();

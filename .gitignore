@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+#Own files
+#test.js is a junk file for random stuff that I test. 
+test.js 

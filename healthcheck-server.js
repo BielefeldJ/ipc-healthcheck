@@ -41,6 +41,11 @@ class HealthcheckServer extends EventEmitter
 				this.services.find(s => s.id === socket.id).detach = true;
 				ipc.log(`Service with socket id ${socket.id} detatched.`);
 			});
+			ipc.server.on('notifyError', (err,socket) =>{
+				let service = this.services.find(s => s.id === socket.id);
+				ipc.log(`Service ${service.name} notifyed me about an error.`);
+				this.emit('serviceError',err,{name : service.name, id : service.id});
+			});
 			ipc.server.on('socket.disconnected', (socket, destroyedSocketID) => {
 				let disconnectedService = this.services.find(s => s.id === destroyedSocketID);
 				if (disconnectedService.detach) {
@@ -87,6 +92,7 @@ class HealthcheckServer extends EventEmitter
 	}
 }
 
+//class to handle service objects used by the server
 class Service 
 {
 	constructor(id, name, socket)

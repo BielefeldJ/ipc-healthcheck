@@ -23,6 +23,13 @@ class HealthcheckClient{
 			});
 		});	
 	}
+	//send a message to the watchdog server
+	notifyAboutError(err)
+	{
+		ipc.of.watchdog.emit('notifyError', err);
+		ipc.log("Send the error message to watchdog");
+	}
+
 	//Detach this service from the HealthcheckServer
 	detach()
 	{

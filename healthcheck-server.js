@@ -3,7 +3,7 @@ const { EventEmitter } = require('events');
 
 class HealthcheckServer extends EventEmitter 
 {
-	constructor(respondTime, intervall, silent) 
+	constructor(namespace, respondTime, intervall, silent) 
 	{
 		super();
 		if (respondTime > intervall) 
@@ -12,6 +12,7 @@ class HealthcheckServer extends EventEmitter
 		this.intervall = intervall;
 		this.respondTime = respondTime;
 
+		ipc.config.appspace = namespace + '.';
 		ipc.config.id = 'watchdog'; //If you change this name, remember to change it in the client as well.
 		ipc.config.silent = silent;
 

@@ -1,8 +1,9 @@
 const ipc = require('node-ipc').default;	
   
 class HealthcheckClient{
-	constructor(serviceID,silent)
+	constructor(namespace,serviceID,silent)
 	{
+		ipc.config.appspace = namespace + '.';
 		ipc.config.id = serviceID;
 		ipc.config.retry = 3000;
 		ipc.config.silent = silent;

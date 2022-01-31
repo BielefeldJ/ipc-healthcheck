@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "node-ipc": "^10.1.0"
+  },
+  "name": "ipc-healthcheck",
+  "description": "Health Check client and server for nodejs using ipc.",
+  "version": "1.0.0",
+  "main": "example-client.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BielefeldJ/ipc-healthcheck.git"
+  },
+  "keywords": [
+    "nodejs",
+    "ipc",
+    "node",
+    "javascript",
+    "healthcheck"
+  ],
+  "author": "BielefeldJ",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BielefeldJ/ipc-healthcheck/issues"
+  },
+  "homepage": "https://github.com/BielefeldJ/ipc-healthcheck#readme"
+}

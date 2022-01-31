@@ -4,7 +4,7 @@
   },
   "name": "ipc-healthcheck",
   "description": "Health Check client and server for nodejs using ipc.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "example-client.js",
   "devDependencies": {},
   "scripts": {

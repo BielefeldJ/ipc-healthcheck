@@ -26,8 +26,8 @@ Install via npm:
 ----
 ## Server
 Include the server 
+
 ```javascript
-//commonjs
 const HealthcheckServer = require('ipc-healthcheck/healthcheck-server');
 ```
 ----
@@ -46,8 +46,13 @@ const server = new HealthcheckServer(namespace, respondTime, intervalTime, silen
 
 ----
 ## Server Methods
+The server has the following methods:
+- [startServer](#startserver)
+- [stopServer](#stopserver)
+
 #### startServer()
 Start the socket server and starts sending requests to all connected clients. (_void_)
+
 ```javascript
 server.startServer()
 ```
@@ -60,19 +65,21 @@ server.stopServer()
 
 ----
 ## Events
-The Server does fire the following events:
+The server does fire the following events:
 - [serviceCrashed](#servicecrashed) - A service didn't answer the health check request
-- [serviceError](#serviceerror) - A service send a message to the server
+- [serviceNotify](#serviceerror) - A service send a message to the server
 
 #### serviceCrashed
 A client that registered at the Server did not answer the last 3 health check requests and might be crashed.
 
 **Parameters:**
-- ``name``: _String_ - Name with which the client is registered
-
+- ``service``: _Object_ - Service object
+    - ``name``: _String_ - Name with which the service is registered
+    - ``id``: _String_ - ID the Server has given this service
+    - ``lastrespond`` : _Date_ - Time the service did the last respond to a request.
 
 ```javascript
-server.on('serviceCrashed', (name) => {
+server.on('serviceCrashed', (service) => {
     //do suff
 });
 ```
@@ -80,14 +87,80 @@ server.on('serviceCrashed', (name) => {
 #### serviceError
 This event triggers, when a client sends an message to the server.
 
+**Parameters:**
 - ``msg`` : _String_ - Message the client send to the Server
 - ``service``: _Object_ - Service object
     - ``name``: _String_ - Name with which the service is registered
     - ``id``: _String_ - ID the Server has given this service
+    - ``lastrespond`` : _Date_ - Time the service did the last respond to a request.
 
 ```javascript
-server.on('serviceError', (msg, service) => {
+server.on('serviceNotify', (msg, service) => {
     //do stuff here
-})
+});
+```
 ----
-#### Client
+## Client
+
+Include the client 
+
+```javascript
+const HealthcheckClient = require('ipc-healthcheck/healthcheck-client');
+```
+----
+## Create Client
+Creating a new client object
+
+**Parameter:**
+
+- ``namespace``: _String_ - Health check server name the client should connect to
+- ``serviceID`` : _String - The name with which the client registers with the server
+- ``silent`` : _boolean_ - Turns debug messages on or off. true = no debug messages
+
+```javascript
+const healthcheckclient = new HealthcheckClient(namespace,serviceID,silent);
+```
+----
+## Client Methods
+The client has the following methods:
+- [startListening](#startListening)
+- [notify](#notify)
+- [detach](#detach)
+
+#### startListening()
+Client connect to the server and starts listening to health check requests. (_void_)
+
+```javascript
+client.startListening();
+```
+
+#### notify()
+Sends a message to the server (_void_)
+
+**Parameters:**
+
+- ``msg`` : _String_ - The message that should be send to the server
+
+```javascript
+client.notify(msg);
+```
+
+#### detach()
+Tell the server to not get any requests anymore and disconnect. (_void_)
+
+```javascript
+client.detach();
+```
+----
+
+## Examples
+
+You can find examples in this repo.
+
+- Example code for the [server](https://github.com/BielefeldJ/ipc-healthcheck/blob/main/example-server.js)  
+- Example code for the [client](https://github.com/BielefeldJ/ipc-healthcheck/blob/main/example-client.js)
+
+----
+
+
+

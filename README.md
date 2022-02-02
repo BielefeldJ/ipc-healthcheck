@@ -16,20 +16,21 @@ Health Check server and client for nodejs applications using ipc via unix and wi
 4. [Examples](#examples)  
 
 ----
-#### Install
+## Install
 NodeJS version >=14 is required for this module.
 Install via npm:
+
 `npm install git+https://github.com/BielefeldJ/ipc-healthcheck.git`
 
 ----
-#### Server
+## Server
 Include the server 
 ```javascript
 //commonjs
 const HealthcheckServer = require('ipc-healthcheck/healthcheck-server');
 ```
 ----
-#### Create Server
+## Create Server
 Creating a new server object
 **Parameter:**
 
@@ -43,21 +44,21 @@ const server = new HealthcheckServer(namespace, respondTime, intervalTime, silen
 ```
 
 ----
-#### Server Methods
-## startServer()
+## Server Methods
+#### startServer()
 Start the socket server and starts sending requests to all connected clients. (_void_)
 ```javascript
 server.startServer()
 ```
 
-## stopServer()
+#### stopServer()
 Stops sending requests and stops the server. (_void_)
 ```javascript
 server.stopServer()
 ```
 
 ----
-#### Events
+## Events
 //TODO
 
 ----

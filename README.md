@@ -21,7 +21,7 @@ NodeJS version >=14 is required for this module.
 
 Install via npm:
 
-`npm install git+https://github.com/BielefeldJ/ipc-healthcheck.git`
+`npm install ipc-healthcheck`
 
 ----
 ## Server

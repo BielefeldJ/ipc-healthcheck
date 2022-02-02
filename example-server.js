@@ -21,12 +21,12 @@ healthcheckserver.on('serviceCrashed', (name) => {
 	console.log('Service crashed: ' + name);
 });
 
-//this event will trigger, as soon as a service calls the notifyAboutError method.
+//this event will trigger, as soon as a service calls the notify method.
 //This way, the service can send a message to the server.
 //An example would be, if the service in question throws an error and you want to be informed about it.
-//in this case you can call the notifyAboutError method client side and this event will trigger here
-healthcheckserver.on('serviceError', (errmeg,service) => {
-	console.log(`Service ${service.name} with id ${service.id} send the following error: ${errmeg}`);
+//in this case you can call the notify method client side and this event will trigger here
+healthcheckserver.on('serviceNotify', (msg,service) => {
+	console.log(`Service ${service.name} with id ${service.id} send the following error: ${msg}`);
 });
 
 //Starts the HealthcheckServer

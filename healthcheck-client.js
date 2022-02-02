@@ -25,10 +25,10 @@ class HealthcheckClient{
 		});	
 	}
 	//send a message to the watchdog server
-	notifyAboutError(err)
+	notify(msg)
 	{
-		ipc.of.watchdog.emit('notifyError', err);
-		ipc.log("Send the error message to watchdog");
+		ipc.of.watchdog.emit('notify', msg);
+		ipc.log("Send a message to watchdog");
 	}
 
 	//Detach this service from the HealthcheckServer

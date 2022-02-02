@@ -30,7 +30,7 @@ setTimeout( () => {
 	}
 	catch(e){
 		//send the error message to the server.
-		healthcheckclient.notifyAboutError(e.stack);
+		healthcheckclient.notify(e.stack);
 	}
 }, 3000);
 

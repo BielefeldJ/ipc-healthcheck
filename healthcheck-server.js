@@ -42,10 +42,10 @@ class HealthcheckServer extends EventEmitter
 				this.services.find(s => s.id === socket.id).detach = true;
 				ipc.log(`Service with socket id ${socket.id} detatched.`);
 			});
-			ipc.server.on('notifyError', (err,socket) =>{
+			ipc.server.on('notify', (msg,socket) =>{
 				let service = this.services.find(s => s.id === socket.id);
-				ipc.log(`Service ${service.name} notifyed me about an error.`);
-				this.emit('serviceError',err,{name : service.name, id : service.id});
+				ipc.log(`Service ${service.name} notifyed me.`);
+				this.emit('serviceNotify',msg,{name : service.name, id : service.id, lastrespond : service.lastcheck});
 			});
 			ipc.server.on('socket.disconnected', (socket, destroyedSocketID) => {
 				let disconnectedService = this.services.find(s => s.id === destroyedSocketID);
@@ -73,7 +73,7 @@ class HealthcheckServer extends EventEmitter
 						if (service.crashed) //service did't respond 3 times in a row. 
 						{
 							ipc.log(`${service.name} did not answer 3 times in a row. Removing it from list now`);
-							this.emit('serviceCrashed', service.name);
+							this.emit('serviceCrashed', {name : service.name, id : service.id, lastrespond : service.lastcheck});
 							this.services.splice(index, 1); //removing the service, no need to checked a crashed service anymore no?
 						}
 					}

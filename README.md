@@ -68,7 +68,7 @@ The Server does fire the following events:
 A client that registered at the Server did not answer the last 3 health check requests and might be crashed.
 
 **Parameters:**
--``name``: _String_ - Name with which the client is registered
+- ``name``: _String_ - Name with which the client is registered
 
 
 ```javascript
@@ -80,8 +80,8 @@ server.on('serviceCrashed', (name) => {
 #### serviceError
 This event triggers, when a client sends an message to the server.
 
--``msg`` : _String_ - Message the client send to the Server
--``service``: _Object_ - Service object
+- ``msg`` : _String_ - Message the client send to the Server
+- ``service``: _Object_ - Service object
     - ``name``: _String_ - Name with which the service is registered
     - ``id``: _String_ - ID the Server has given this service
 

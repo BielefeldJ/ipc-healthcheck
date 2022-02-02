@@ -29,6 +29,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/BielefeldJ/ipc-healthcheck/issues"
+  },"publishConfig": {
+    "@BielefeldJ:registry": "https://npm.pkg.github.com"
   },
   "homepage": "https://github.com/BielefeldJ/ipc-healthcheck#readme"
 }

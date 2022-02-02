@@ -7,17 +7,18 @@ Health Check server and client for nodejs applications using ipc via unix and wi
 #### Contents
 1. [Install](#install)
 2. [Server](#server)
-  1. [Create Server](#create-server)
-  2. [Server Methods](#server-methods)
-  3. [Events](#events)
+    1. [Create Server](#create-server)
+     2. [Server Methods](#server-methods)
+    3. [Events](#events)
 3. [Client](#client)
-  1. [Create Client](#create-client)
-  2. [Client Methods](#client-methods)
+    1. [Create Client](#create-client)
+    2. [Client Methods](#client-methods)
 4. [Examples](#examples)  
 
 ----
 ## Install
 NodeJS version >=14 is required for this module.
+
 Install via npm:
 
 `npm install git+https://github.com/BielefeldJ/ipc-healthcheck.git`

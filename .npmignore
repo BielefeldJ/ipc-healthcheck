@@ -1,2 +1,2 @@
-example-server.js
-example-client.js
+#ignore example files
+example-*.js

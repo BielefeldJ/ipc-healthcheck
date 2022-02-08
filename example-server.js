@@ -17,8 +17,8 @@ const silent = false;
 const healthcheckserver = new HealthcheckServer(namespace,respondTime,intervalTime ,silent);
 
 //this event will trigger, as soon as a service did not respond 3 times in a row. 
-healthcheckserver.on('serviceCrashed', (name) => {
-	console.log('Service crashed: ' + name);
+healthcheckserver.on('serviceCrashed', (service) => {
+	console.log('Service crashed: ' + service.name);
 });
 
 //this event will trigger, as soon as a service calls the notify method.

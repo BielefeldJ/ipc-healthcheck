@@ -66,8 +66,24 @@ server.stopServer()
 ----
 ## Events
 The server does fire the following events:
+- [serviceRegistered](#serviceregistered) - A new service has registered with the server
 - [serviceCrashed](#servicecrashed) - A service didn't answer the health check request
-- [serviceNotify](#serviceerror) - A service send a message to the server
+- [serviceNotify](#servicenotify) - A service send a message to the server
+- [serviceDetached](#servicedetached) - A new service has registered with the server
+
+#### serviceRegistered
+A new client connected and registered to the Server. Healthcheck messages are now sent to this client.
+
+**Parameters**
+- ``service``: _Object_ - Service object
+    - ``name``: _String_ - Name with which the service is registered
+    - ``id``: _String_ - ID the Server has given this service
+
+```javascript
+server.on('serviceRegistered', (service) => {
+    //do stuff
+});
+```
 
 #### serviceCrashed
 A client that registered at the Server did not answer the last 3 health check requests and might be crashed.
@@ -84,7 +100,7 @@ server.on('serviceCrashed', (service) => {
 });
 ```
 
-#### serviceError
+#### serviceNotify
 This event triggers, when a client sends an message to the server.
 
 **Parameters:**
@@ -96,9 +112,25 @@ This event triggers, when a client sends an message to the server.
 
 ```javascript
 server.on('serviceNotify', (msg, service) => {
-    //do stuff here
+    //do stuff 
 });
 ```
+
+#### serviceDetached
+A client that was connected to the server called the detach function and disconnected. This client will not receive any healthcheck messages.
+
+**Parameters:**
+- ``service``: _Object_ - Service object
+    - ``name``: _String_ - Name with which the service is registered
+    - ``id``: _String_ - ID the Server has given this service
+    - ``lastrespond`` : _Date_ - Time the service did the last respond to a request.
+
+```javascript
+server.on('serviceDetached', (service) => {
+    //do stuff 
+});
+```
+
 ----
 ## Client
 

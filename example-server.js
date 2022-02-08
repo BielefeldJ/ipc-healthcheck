@@ -1,7 +1,7 @@
 
 //importing the HealthcheckServer.
-const HealthcheckServer = require('ipc-healthcheck/healthcheck-server');
-
+//const HealthcheckServer = require('ipc-healthcheck/healthcheck-server');
+const HealthcheckServer = require('./healthcheck-server');
 //This is the namespace for the healthcheck services and client.
 //This namespace allows clients to specify which healthcheck server they want to connect to.
 //This is needed if you wanna run more then one server. 
@@ -16,8 +16,13 @@ const silent = false;
 //Create the HealthcheckServer with the given settings.
 const healthcheckserver = new HealthcheckServer(namespace,respondTime,intervalTime ,silent);
 
+//This event is triggered as soon as a new service registers.
+healthcheckserver.on('serviceRegistered', service => {
+	console.log(`A new serivce connected ${service.name}`);
+});
+
 //this event will trigger, as soon as a service did not respond 3 times in a row. 
-healthcheckserver.on('serviceCrashed', (service) => {
+healthcheckserver.on('serviceCrashed', service => {
 	console.log('Service crashed: ' + service.name);
 });
 
@@ -27,6 +32,11 @@ healthcheckserver.on('serviceCrashed', (service) => {
 //in this case you can call the notify method client side and this event will trigger here
 healthcheckserver.on('serviceNotify', (msg,service) => {
 	console.log(`Service ${service.name} with id ${service.id} send the following error: ${msg}`);
+});
+
+//This event is triggered as soon a service calles the detach function.
+healthcheckserver.on('serviceDetached', service => {
+	console.log(`${service.name} with id ${service.id} disconnected.`);
 });
 
 //Starts the HealthcheckServer

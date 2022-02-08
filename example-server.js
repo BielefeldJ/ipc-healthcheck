@@ -1,7 +1,7 @@
 
 //importing the HealthcheckServer.
-//const HealthcheckServer = require('ipc-healthcheck/healthcheck-server');
-const HealthcheckServer = require('./healthcheck-server');
+const HealthcheckServer = require('ipc-healthcheck/healthcheck-server');
+
 //This is the namespace for the healthcheck services and client.
 //This namespace allows clients to specify which healthcheck server they want to connect to.
 //This is needed if you wanna run more then one server. 

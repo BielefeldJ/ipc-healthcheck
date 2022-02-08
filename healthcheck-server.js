@@ -33,15 +33,16 @@ class HealthcheckServer extends EventEmitter
 				ipc.log('New client introduced as ' + message);
 				socket.id = Date.now().toString(36) + (Math.random() + 1).toString(36).substring(7);; //save a "random" client's socket id. Just so we don't get any duplicates
 				this.services.push(new Service(socket.id, message, socket));
-				this.emit('serviceRegistered', {name : service.name, id : service.id});
+				this.emit('serviceRegistered', {name : message, id : socket.id});
 			});
 			ipc.server.on('OK', (message, socket) => { //ignore message. We never send one anyway
 				this.services.find(s => s.id === socket.id).lastcheck = Date.now();
 				ipc.log(`Got healthcheck reply from socket ${socket.id}`);
 			});
 			ipc.server.on('serviceDetach', (message, socket) => {
-				this.services.find(s => s.id === socket.id).detach = true;
-				ipc.log(`Service with socket id ${socket.id} detatched.`);
+				let service = this.services.find(s => s.id === socket.id);
+				service.detach = true;
+				ipc.log(`Service with socket id ${socket.id} detatched.`);				
 				this.emit('serviceDetached', {name : service.name, id : service.id, lastrespond : service.lastcheck});
 			});
 			ipc.server.on('notify', (msg,socket) =>{

@@ -1,7 +1,7 @@
 # IPC-HealthCheck
 Health Check server and client for nodejs applications using ipc via unix and windows sockets.
 
-![Version](https://img.shields.io/badge/version-v1.2.0-blue) ![NodeJS Version](https://img.shields.io/badge/node%3E%3D-14-brightgreen) ![GitHub license](https://img.shields.io/github/license/BielefeldJ/ipc-healthcheck) ![open issues](https://img.shields.io/github/issues/BielefeldJ/ipc-healthcheck)
+![Version](https://img.shields.io/badge/version-v1.3.0-blue) ![NodeJS Version](https://img.shields.io/badge/node%3E%3D-14-brightgreen) ![GitHub license](https://img.shields.io/github/license/BielefeldJ/ipc-healthcheck) ![open issues](https://img.shields.io/github/issues/BielefeldJ/ipc-healthcheck)
 
 ----
 #### Contents

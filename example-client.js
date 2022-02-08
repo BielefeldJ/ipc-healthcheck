@@ -22,11 +22,8 @@ healthcheckclient.startListening();
 setTimeout( () => {
 	try{
 		//do something that might fail
-		if(Math.floor(Math.random()*2) === 0)
-		{
-			//there is a 50:50 that this will be executed and throw an error.
-			letsthrowanerror.trigger;
-		}
+		if(Math.floor(Math.random()*2) === 0)			
+			letsthrowanerror.trigger; //there is a 50:50 that this will be executed and throw an error.
 	}
 	catch(e){
 		//send the error message to the server.

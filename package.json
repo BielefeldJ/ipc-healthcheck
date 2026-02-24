@@ -1,11 +1,10 @@
 {
   "dependencies": {
-    "node-ipc": "^10.1.0"
+    "node-ipc": "^9.2.1"
   },
   "name": "ipc-healthcheck",
   "description": "Health Check client and server for nodejs using ipc.",
-  "version": "1.3.0",
-  "devDependencies": {},
+  "version": "1.3.1",
   "scripts": {
     "test": "exit 0"
   },
